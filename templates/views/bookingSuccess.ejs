@@ -1,0 +1,55 @@
+<!-- booking_success.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Booking Successful</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      /* Your custom styles here */
+      body {
+        background-color: #030329; /* Dark blue background color */
+        color: #dad7d7; /* White text color */
+      }
+
+      .container h1 {
+        color: #b6b6b6 !important; /* Grey text color for h1 */
+      }
+
+      .card {
+        background-color: #16213e !important; /* Dark navy blue background color for cards */
+        border-color: #1a1a2e !important; /* Dark blue border color for cards */
+        color: #dad7d7; /* White text color for card content */
+      }
+
+      .btn-primary {
+        background-color: #1a1a2e !important; /* Dark blue background color for buttons */
+        border-color: #1a1a2e !important; /* Dark blue border color for buttons */
+      }
+
+      .btn-primary:hover {
+        background-color: #212144 !important; /* Slightly lighter background color on hover */
+        border-color: #212144 !important; /* Slightly lighter border color on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h1>Booking Successful</h1>
+          <p>
+            Your booking has been successfully completed. Thank you for booking
+            a session.
+          </p>
+          <p>Date: <%= booking.date %></p>
+          <p>Time: <%= booking.time %></p>
+
+          <a href="/" class="btn btn-primary">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

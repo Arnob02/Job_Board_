@@ -1,0 +1,175 @@
+<!-- booking_form.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Mentor -</title>
+    <!-- Add Bootstrap CSS CDN link here -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Your custom styles here */
+      body {
+        background-color: #030329; /* Dark blue background color */
+        color: #dad7d7; /* White text color */
+      }
+
+      .container h1 {
+        color: #b6b6b6 !important; /* Grey text color for h1 */
+      }
+
+      .card {
+        background-color: #16213e !important; /* Dark navy blue background color for cards */
+        border-color: #1a1a2e !important; /* Dark blue border color for cards */
+        color: #dad7d7; /* White text color for card content */
+      }
+
+      .btn-primary {
+        background-color: #1a1a2e !important; /* Dark blue background color for hire mentor buttons */
+        border-color: #1a1a2e !important; /* Dark blue border color for hire mentor buttons */
+      }
+
+      .btn-primary:hover {
+        background-color: #212144 !important; /* Slightly lighter background color on hover */
+        border-color: #cacae1 !important; /* Slightly lighter border color on hover */
+      }
+
+      .form-group label {
+        color: #dad7d7 !important; /* White text color for labels */
+        font-weight: bold; /* Bold font for labels */
+      }
+
+      .form-control {
+        background-color: #03031b; /* Dark blue background for form controls */
+        color: #dad7d7; /* White text color for form controls */
+        border-color: #1e1e3f; /* Dark blue border for form controls */
+      }
+
+      .form-control::placeholder {
+        color: #141a39; /* Light gray placeholder text color */
+      }
+
+      .form-control:focus {
+        background-color: #212144; /* Slightly lighter background on focus */
+        border-color: #e6e6f2;
+        color: #dad7d7;
+        /* Slightly lighter border on focus */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Mentorship Program</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-center"
+          id="navbarNav"
+        >
+          <!-- Center the navbar items -->
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <form class="form-inline">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-light" type="button">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+    <br />
+    <br />
+
+    <div class="container">
+      <h1>Book Mentor - <%= mentorName %></h1>
+      <br />
+      <div class="card">
+        <div class="card-body">
+          <form method="POST" action="/bookSuccess">
+            <div class="form-group">
+              <br />
+              <label for="name">Your Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <br />
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <br />
+              <label for="date">Date:</label><br />
+
+              <input
+                type="date"
+                id="date"
+                name="date"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <br />
+              <label for="time">Time:</label>
+              <br />
+              <input
+                type="time"
+                id="time"
+                name="time"
+                class="form-control"
+                required
+              />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Book Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

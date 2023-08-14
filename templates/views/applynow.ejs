@@ -1,0 +1,99 @@
+<!-- Designined by CodingLab - youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Apply Now</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Apply To Your Dream Job</div>
+      <div class="content">
+        <form action="/applynow" method="POST">
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Full Name</span>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                name="applicantName"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <span class="details">Company Name</span>
+              <input
+                type="text"
+                placeholder="Enter your username"
+                name="companyName"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <span class="details">Email</span>
+              <input
+                type="text"
+                placeholder="Enter your email"
+                name="applicantEmail"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <span class="details">Position</span>
+              <input
+                type="text"
+                placeholder="Enter your number"
+                name="position"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <span class="details">Skills</span>
+              <textarea
+                placeholder="Enter your skills"
+                name="skills"
+                rows="5"
+                cols="60"
+                required
+              ></textarea>
+            </div>
+
+            <!-- <div class="input-box">
+              <span class="details">Confirm Password</span>
+              <input
+                type="text"
+                placeholder="Confirm your password"
+                name="number"
+                required
+              />
+            </div> -->
+          </div>
+          <div class="gender-details">
+            <input type="radio" name="worktype" id="dot-1" />
+            <input type="radio" name="worktype" id="dot-2" />
+            <input type="radio" name="worktype" id="dot-3" />
+            <span class="gender-title">Work Type</span>
+            <div class="category">
+              <label for="dot-1">
+                <span class="dot one"></span>
+                <span class="gender">Full-Time</span>
+              </label>
+              <label for="dot-2">
+                <span class="dot two"></span>
+                <span class="gender">Part-Time</span>
+              </label>
+              <label for="dot-3">
+                <span class="dot three"></span>
+                <span class="gender">Internship</span>
+              </label>
+            </div>
+          </div>
+          <div class="button">
+            <input type="submit" value="Apply Now" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
