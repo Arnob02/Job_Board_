@@ -24,8 +24,24 @@ const jobsSchema = new mongoose.Schema(
     },
     workLocation: {
       type: String,
-      default: "Mumbai",
+      default: "Dhaka",
       required: [true, "Work location is required"],
+    },
+    description: {
+      type: String,
+      required: false,
+    },
+    departments: {
+      type: String,
+      required: false,
+    },
+    services: {
+      type: String,
+      required: false,
+    },
+    awards: {
+      type: String,
+      required: false,
     },
     // createdBy: {
     //   type: mongoose.Types.ObjectId,
