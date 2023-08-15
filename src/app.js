@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
 const ejs = require("ejs");
+const session = require("express-session");
 
 // Sadab
 
@@ -48,6 +49,14 @@ app.use(mentorsRouter);
 app.use(hiredRouter);
 app.use(roadmapRouter);
 
+app.use(
+  session({
+    secret: "12345", // Replace with a secret key for session encryption
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 // --End--
 
 app.set("view engine", "ejs");
@@ -86,12 +95,19 @@ app.get("/applynow", (req, res) => {
   res.render("applynow");
 });
 
+// company profile
+
+app.get("/cprofile", async (req, res) => {
+  const loggedemail = req.session.companyemail;
+  console.log(loggedemail.email); // Print the email property
+  res.render("cprofile", { loggedemail });
+});
+
 // fetch applications from Applications database
 
 app.get("/chomepage", async (req, res) => {
   try {
     const applications = await Applications.find(); // Fetch all applications from the database
-    //console.log(applications);
     res.render("chomepage", { data: applications });
   } catch (error) {
     console.error(error);
@@ -104,7 +120,6 @@ app.get("/chomepage", async (req, res) => {
 app.get("/job-list", async (req, res) => {
   try {
     const jobs = await Jobs.find(); // Fetch all applications from the database
-    //console.log(applications);
     res.render("job-list", { data: jobs });
   } catch (error) {
     console.error(error);
@@ -193,10 +208,10 @@ app.post("/clogin", async (req, res) => {
     const password = req.body.password;
 
     const companyemail = await Admin.findOne({ email: email });
-
+    req.session.companyemail = companyemail;
     if (companyemail.password === password) {
       const applications = await Applications.find(); // Fetch all applications from the database
-      //console.log(applications);
+
       res.render("chomepage", { data: applications });
     } else {
       res.send("Password not matching");
@@ -206,6 +221,13 @@ app.post("/clogin", async (req, res) => {
     res.status(400).send("An error occurred");
   }
 });
+
+// app.post("/login", (req, res) => {
+//   // ... Login logic
+//   const userEmail = getUserEmailSomehow(); // Get the user's email from your login process
+//   req.session.userEmail = userEmail; // Store the email in the session
+//   res.redirect("/homepage");
+// });
 
 //create job
 
@@ -258,8 +280,6 @@ async function insertMentorsData() {
       const newMentor = new Mentor(mentorData);
       await newMentor.save();
     }
-
-    //console.log("Mentors data inserted successfully");
   } catch (error) {
     console.error("Error inserting mentors data:", error);
   }

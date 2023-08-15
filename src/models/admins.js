@@ -30,6 +30,23 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  departments: {
+    type: String,
+    required: false,
+  },
+  website: {
+    type: String,
+    required: false,
+  },
+  linkedin: {
+    type: String,
+    required: false,
+  },
+  awards: {
+    type: String,
+    required: false,
+  },
 });
 
 // create collections

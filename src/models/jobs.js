@@ -27,22 +27,7 @@ const jobsSchema = new mongoose.Schema(
       default: "Dhaka",
       required: [true, "Work location is required"],
     },
-    description: {
-      type: String,
-      required: false,
-    },
-    departments: {
-      type: String,
-      required: false,
-    },
-    services: {
-      type: String,
-      required: false,
-    },
-    awards: {
-      type: String,
-      required: false,
-    },
+
     // createdBy: {
     //   type: mongoose.Types.ObjectId,
     //   ref: "Admin",
