@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>JobEntry - Job Portal Website Template</title>
+    <title>Job Lists</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -86,10 +86,9 @@
                 >Jobs</a
               >
               <div class="dropdown-menu rounded-0 m-0">
-                <a href="job-list.html" class="dropdown-item active"
-                  >Job List</a
-                >
-                <a href="job-detail.html" class="dropdown-item">Job Detail</a>
+                <a href="/job-list" class="dropdown-item active">Job List</a>
+
+                <a href="/mentors" class="dropdown-item">Mentorship</a>
               </div>
             </div>
             <div class="nav-item dropdown">
@@ -141,38 +140,20 @@
           <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
             Job Listing
           </h1>
+
+          <form>
+            <select name="searchType">
+              <option value="workLocation">Work Location</option>
+              <option value="workType">Work Type</option>
+              <option value="status">Work Status</option>
+              <option value="position">Work Position</option>
+            </select>
+            <input type="text" placeholder="Search job" name="search" />
+
+            <input type="submit" value="search" />
+          </form>
+
           <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
-            <ul
-              class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5"
-            >
-              <li class="nav-item">
-                <a
-                  class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active"
-                  data-bs-toggle="pill"
-                  href="#tab-1"
-                >
-                  <h6 class="mt-n1 mb-0">Featured</h6>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="d-flex align-items-center text-start mx-3 pb-3"
-                  data-bs-toggle="pill"
-                  href="#tab-2"
-                >
-                  <h6 class="mt-n1 mb-0">Full Time</h6>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="d-flex align-items-center text-start mx-3 me-0 pb-3"
-                  data-bs-toggle="pill"
-                  href="#tab-3"
-                >
-                  <h6 class="mt-n1 mb-0">Part Time</h6>
-                </a>
-              </li>
-            </ul>
             <div class="tab-content">
               <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="col-sm-12 col-md-8">
@@ -186,14 +167,38 @@
                           alt=""
                           style="width: 80px; height: 80px"
                         />
+
                         <div class="text-start ps-4">
                           <h5 class="mb-3"><%= data[i].company %></h5>
                           <span
                             class="text-truncate me-3"
                             style="margin-left: auto"
                           >
-                            <i class="fa fa-envelope"></i><%= data[i].position
-                            %>
+                            <i class="fa fa-envelope"
+                              ><%= data[i].position %>
+                            </i>
+                          </span>
+                          <span
+                            class="text-truncate me-3"
+                            style="margin-left: auto"
+                          >
+                            <i class="fa fa-envelope"
+                              ><%= data[i].workType %>
+                            </i>
+                          </span>
+                          <span
+                            class="text-truncate me-3"
+                            style="margin-left: auto"
+                          >
+                            <i class="fa fa-envelope"
+                              ><%= data[i].workLocation %></i
+                            >
+                          </span>
+                          <span
+                            class="text-truncate me-3"
+                            style="margin-left: auto"
+                          >
+                            <i class="fa fa-envelope"><%= data[i].status %></i>
                           </span>
 
                           <!-- <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>

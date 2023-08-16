@@ -35,6 +35,12 @@ const static_path = path.join(__dirname, "../public");
 const template_path = path.join(__dirname, "../templates/views");
 const partials_path = path.join(__dirname, "../templates/partials");
 
+// maruf
+
+// mongoose.connect(
+//   "mongodb+srv://arnobdeb10:12345@registration.2df2f4p.mongodb.net/Registration?retryWrites=true&w=majority"
+// );
+
 // Sadab
 
 app.use(express.json());
@@ -118,15 +124,15 @@ app.get("/chomepage", async (req, res) => {
 
 // show job-list
 
-app.get("/job-list", async (req, res) => {
-  try {
-    const jobs = await Jobs.find(); // Fetch all applications from the database
-    res.render("job-list", { data: jobs });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("An error occurred");
-  }
-});
+// app.get("/job-list", async (req, res) => {
+//   try {
+//     const jobs = await Jobs.find(); // Fetch all applications from the database
+//     res.render("job-list", { data: jobs });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("An error occurred");
+//   }
+// });
 
 // create a new use in our database
 app.post("/register", async (req, res) => {
@@ -315,6 +321,51 @@ async function insertMentorsData() {
 insertMentorsData();
 
 // --End--
+
+//search and sort (maruf)
+
+app.get("/job-list", async (req, res) => {
+  try {
+    if (req.query) {
+      const { status, workType, search, sort, searchType } = req.query;
+
+      let queryObject = {};
+
+      if (searchType === "workLocation") {
+        queryObject.workLocation = search;
+      } else if (searchType === "workType") {
+        queryObject.workType = search;
+      } else if (searchType === "status") {
+        queryObject.status = search;
+      } else if (searchType === "position") {
+        queryObject.position = search;
+      }
+
+      let queryResult = Jobs.find(queryObject);
+
+      if (sort === "latest") {
+        queryResult = queryResult.sort("-createdAt");
+      }
+      if (sort === "oldest") {
+        queryResult = queryResult.sort("createdAt");
+      }
+
+      const totalJobs = await Jobs.countDocuments(queryResult);
+
+      const jobs = await queryResult;
+      res.render("job-list", { data: jobs });
+    } else {
+      const jobs = await Jobs.find();
+
+      res.render("job-list", { data: jobs });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred");
+  }
+});
+
+app.post("/job-list", async (req, res) => {});
 
 app.listen(port, () => {
   console.log(`Server at http://localhost:${port}`);
