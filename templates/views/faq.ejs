@@ -1,0 +1,46 @@
+<!-- views/faq.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FAQ Page</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body {
+        background-color: #030329; /* Dark blue background color */
+        color: #dad7d7; /* White text color */
+      }
+
+      .container h1 {
+        color: #b6b6b6 !important ; /* Grey text color for h1 */
+      }
+
+      .list-group-item {
+        background-color: #16213e !important; /* Dark navy blue background color for FAQ boxes */
+        border-color: #1a1a2e !important; /* Dark blue border color for FAQ boxes */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1 class="text-center text-primary mb-4">
+        Frequently Asked Interview Questions
+      </h1>
+      <ul class="list-group">
+        <% faqsData.forEach((faq, index) => { %>
+        <li class="list-group-item">
+          <h3 class="mb-3"><%= faq.question %></h3>
+          <p><%= faq.answer %></p>
+        </li>
+        <br />
+        <% }); %>
+      </ul>
+    </div>
+  </body>
+</html>
