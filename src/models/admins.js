@@ -17,6 +17,10 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  workLocation: {
+    type: String,
+    required: false,
+  },
 
   number: {
     type: Number,

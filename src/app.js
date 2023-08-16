@@ -54,6 +54,7 @@ app.use(
     secret: "12345", // Replace with a secret key for session encryption
     resave: false,
     saveUninitialized: true,
+    cookie: { maxAge: 3600000 },
   })
 );
 
@@ -99,7 +100,7 @@ app.get("/applynow", (req, res) => {
 
 app.get("/cprofile", async (req, res) => {
   const loggedemail = req.session.companyemail;
-  console.log(loggedemail.email); // Print the email property
+  //console.log(loggedemail.email);
   res.render("cprofile", { loggedemail });
 });
 
@@ -222,13 +223,6 @@ app.post("/clogin", async (req, res) => {
   }
 });
 
-// app.post("/login", (req, res) => {
-//   // ... Login logic
-//   const userEmail = getUserEmailSomehow(); // Get the user's email from your login process
-//   req.session.userEmail = userEmail; // Store the email in the session
-//   res.redirect("/homepage");
-// });
-
 //create job
 
 app.post("/create", async (req, res) => {
@@ -266,6 +260,39 @@ app.post("/applynow", async (req, res) => {
     res.status(201).render("job-list", { data: jobbs });
   } catch (error) {
     console.error(error); // Log the actual error
+    res.status(400).send("An error occurred");
+  }
+});
+
+// Company Profile edit
+
+app.post("/cprofile", async (req, res) => {
+  try {
+    const loggedemail = req.session.companyemail;
+    const companyName = req.session.companyemail.companyname; // Get the company name from the session
+    //console.log(companyName);
+    // Construct an update object with the fields that are present in the request body
+    const updateObject = {};
+    if (req.body.companyname) updateObject.companyname = req.body.companyname;
+    if (req.body.number) updateObject.number = req.body.number;
+    if (req.body.workLocation)
+      updateObject.workLocation = req.body.workLocation;
+    if (req.body.website) updateObject.website = req.body.website;
+    if (req.body.linkedin) updateObject.linkedin = req.body.linkedin;
+    if (req.body.companydescription)
+      updateObject.companydescription = req.body.companydescription;
+    if (req.body.departments) updateObject.departments = req.body.departments;
+    if (req.body.awards) updateObject.awards = req.body.awards;
+
+    // Use findOneAndUpdate to update the fields based on the company name
+    const updatedAdmin = await Admin.findOneAndUpdate(
+      { companyname: companyName },
+      { $set: updateObject },
+      { new: true } // To get the updated document
+    );
+    res.status(201).render("cprofile", { loggedemail });
+  } catch (error) {
+    console.error(error);
     res.status(400).send("An error occurred");
   }
 });
