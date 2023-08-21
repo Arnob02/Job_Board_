@@ -99,7 +99,8 @@ app.get("/create", (req, res) => {
 // applicant's apply now
 
 app.get("/applynow", (req, res) => {
-  res.render("applynow");
+  const userloggedemail = req.session.useremail;
+  res.render("applynow", { userloggedemail });
 });
 
 // company profile
@@ -121,18 +122,6 @@ app.get("/chomepage", async (req, res) => {
     res.status(500).send("An error occurred");
   }
 });
-
-// show job-list
-
-// app.get("/job-list", async (req, res) => {
-//   try {
-//     const jobs = await Jobs.find(); // Fetch all applications from the database
-//     res.render("job-list", { data: jobs });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("An error occurred");
-//   }
-// });
 
 // create a new use in our database
 app.post("/register", async (req, res) => {
@@ -196,7 +185,7 @@ app.post("/login", async (req, res) => {
     const password = req.body.password;
 
     const useremail = await Register.findOne({ email: email });
-
+    req.session.useremail = useremail;
     if (useremail.password === password) {
       res.status(201).render("index");
     } else {
@@ -217,8 +206,7 @@ app.post("/clogin", async (req, res) => {
     const companyemail = await Admin.findOne({ email: email });
     req.session.companyemail = companyemail;
     if (companyemail.password === password) {
-      const applications = await Applications.find(); // Fetch all applications from the database
-
+      const applications = await Applications.find();
       res.render("chomepage", { data: applications });
     } else {
       res.send("Password not matching");
@@ -275,9 +263,8 @@ app.post("/applynow", async (req, res) => {
 app.post("/cprofile", async (req, res) => {
   try {
     const loggedemail = req.session.companyemail;
-    const companyName = req.session.companyemail.companyname; // Get the company name from the session
-    //console.log(companyName);
-    // Construct an update object with the fields that are present in the request body
+    const companyName = req.session.companyemail.companyname;
+
     const updateObject = {};
     if (req.body.companyname) updateObject.companyname = req.body.companyname;
     if (req.body.number) updateObject.number = req.body.number;

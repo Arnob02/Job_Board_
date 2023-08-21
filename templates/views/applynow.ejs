@@ -18,14 +18,15 @@
                 type="text"
                 placeholder="Enter your name"
                 name="applicantName"
+                value="<%= userloggedemail.fullname %>"
                 required
               />
             </div>
             <div class="input-box">
-              <span class="details">Company Name</span>
+              <span class="details">Your Current Company Name</span>
               <input
                 type="text"
-                placeholder="Enter your username"
+                placeholder="Enter here"
                 name="companyName"
                 required
               />
@@ -36,11 +37,12 @@
                 type="text"
                 placeholder="Enter your email"
                 name="applicantEmail"
+                value="<%= userloggedemail.email %>"
                 required
               />
             </div>
             <div class="input-box">
-              <span class="details">Position</span>
+              <span class="details">Preffered Position</span>
               <input
                 type="text"
                 placeholder="Enter your number"
@@ -49,7 +51,7 @@
               />
             </div>
             <div class="input-box">
-              <span class="details">Skills</span>
+              <span class="details">Skills and Experiences</span>
               <textarea
                 placeholder="Enter your skills"
                 name="skills"
@@ -58,16 +60,6 @@
                 required
               ></textarea>
             </div>
-
-            <!-- <div class="input-box">
-              <span class="details">Confirm Password</span>
-              <input
-                type="text"
-                placeholder="Confirm your password"
-                name="number"
-                required
-              />
-            </div> -->
           </div>
           <div class="gender-details">
             <input type="radio" name="worktype" id="dot-1" />
@@ -95,5 +87,12 @@
         </form>
       </div>
     </div>
+    <script>
+      const applyForm = document.querySelector("form"); // Select the form element
+
+      applyForm.addEventListener("submit", () => {
+        alert("You've successfully applied!");
+      });
+    </script>
   </body>
 </html>

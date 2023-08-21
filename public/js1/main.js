@@ -221,3 +221,5 @@ hbs.registerHelper("times", function (n, block) {
   }
   return accum;
 });
+
+// show successfully applied msg

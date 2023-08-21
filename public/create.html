@@ -42,17 +42,6 @@
               />
             </div>
 
-            <!-- <div class="form-group mt-2">
-              <label for="addressField">Work Type</label>
-              <textarea
-                id="addressField"
-                name="workType"
-                placeholder="full-time or part-time or internship or contaract"
-                class="form-control"
-                rows="5"
-              ></textarea>
-            </div> -->
-
             <div class="form-group mt-2">
               <label for="addressField">Work Type</label>
               <select id="addressField" name="workType" class="form-control">
@@ -122,6 +111,13 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const applyForm = document.querySelector("form"); // Select the form element
+
+      applyForm.addEventListener("submit", () => {
+        alert("You've successfully posted!");
+      });
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
